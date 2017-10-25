@@ -1,4 +1,4 @@
-	
+
 # -*- coding: utf-8 -*-
 
 import paho.mqtt.client as mqtt
@@ -12,7 +12,7 @@ Auth = namedtuple('Auth', ['user', 'pwd'])
 # descomente esta linha para usar o servidor da Fundação Eclipse.
 MQTT_ADDRESS = 'iot.eclipse.org'
 MQTT_PORT = 1883
-# descomente esta linha caso seu servidor possua autenticação.
+# descomente esta klinha caso seu servidor possua autenticação.
 # MQTT_AUTH = Auth('login', 'senha')
 MQTT_TIMEOUT = 60
 
@@ -57,7 +57,7 @@ def send_message(msg):
     # descomente esta linha caso seu servidor possua autenticação.
     # client.username_pw_set(MQTT_AUTH.user, MQTT_AUTH.pwd)
     client.connect(MQTT_ADDRESS, MQTT_PORT, MQTT_TIMEOUT)
-    
+
     result, mid = client.publish('/buteco/topico', msg)
     print('Mensagem enviada ao canal: %d' % mid)
 
