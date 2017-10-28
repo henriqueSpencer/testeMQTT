@@ -1,4 +1,6 @@
-import paho.mqtt.client as mqtt #biblioteca MQTT desenvolvida pela Fundação Eclipse
+# -*- coding: utf-8 -*-
+import paho.mqtt.client as mqtt 
+#biblioteca MQTT desenvolvida pela Fundação Eclipse
 
 #paho.Client(client_id=””, clean_session=True, userdata=None, protocol=paho.MQTTv31)
 #If you do not specify a client_id, a random id will be generated for you (and clean_session must be set to True). The userdata parameter can be any value or datatype that you wish and the data will be passed to all callbacks as the userdata variable

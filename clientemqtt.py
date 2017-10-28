@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-'''
+
 import paho.mqtt.client as mqtt
 import sys
 
@@ -66,7 +66,6 @@ if __name__ == '__main__':
     elif '--send' in sys.argv:
         msg = input_func('Digite uma mensagem:\n')
         send_message(msg)
-'''
 
 
 
@@ -82,7 +81,7 @@ if __name__ == '__main__':
 
 
 
-import paho.mqtt.client as mqtt
+''' import paho.mqtt.client as mqtt
 
 ipBroker = "iot.eclipse.org"
 portBroker = 1883
@@ -101,5 +100,5 @@ client.on_message = on_message
 
 client.connect(ipBroker,portBroker,60)
 
-client.loop_forever()
+client.loop_forever() '''
 
