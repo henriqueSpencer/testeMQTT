@@ -1,11 +1,14 @@
-# -*- coding: utf-8 -*-
+# encoding=utf8  
 
 import paho.mqtt.client as mqtt
 import sys
 
-from collections import namedtuple
 
-Auth = namedtuple('Auth', ['user', 'pwd'])
+reload(sys)  
+sys.setdefaultencoding('utf8')
+#from collections import namedtuple
+
+#Auth = namedtuple('Auth', ['user', 'pwd'])
 
 #MQTT_ADDRESS = '127.0.0.1'
 # descomente esta linha para usar o servidor da Fundação Eclipse.
