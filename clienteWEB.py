@@ -49,7 +49,8 @@ def on_connect(client, userdata, flags, rc):
 
 #def on_subscribe(client, userdata, mid, granted_qos):
 #    print('Inscrito no tópico: %d' % mid)
-
+def on_subscribe(client, userdata, mid, granted_qos):
+    index()
 
 def on_message(client, userdata, msg):
 	if msg.topic == '/buteco/topico':
@@ -59,18 +60,6 @@ def on_message(client, userdata, msg):
 	#else:
 	  #  print('Tópico desconhecido.')
 
-
-def loop():
-	client = mqtt.Client()
-	client.on_connect = on_connect
-	#client.on_subscribe = on_subscribe
-	client.on_message = on_message
-	# descomente esta linha caso seu servidor possua autenticação.
-	# client.username_pw_set(MQTT_AUTH.user, MQTT_AUTH.pwd)
-	client.connect(MQTT_ADDRESS, MQTT_PORT, MQTT_TIMEOUT)
-	#client.loop_forever()
-
-
 def send_message(msg):
 	client = mqtt.Client()
 	# descomente esta linha caso seu servidor possua autenticação.
@@ -78,14 +67,23 @@ def send_message(msg):
 	client.connect(MQTT_ADDRESS, MQTT_PORT, MQTT_TIMEOUT)
 	result, mid = client.publish('/buteco/topico', msg)
 
+def loop():
+	client = mqtt.Client()
+	client.on_connect = on_connect
+	client.on_subscribe = on_subscribe
+	client.on_message = on_message
+	# descomente esta linha caso seu servidor possua autenticação.
+	# client.username_pw_set(MQTT_AUTH.user, MQTT_AUTH.pwd)
+	client.connect(MQTT_ADDRESS, MQTT_PORT, MQTT_TIMEOUT)
+	#client.loop_forever()
+
+
 
 @app.route('/', methods=['GET','POST'])
 def index():
 	loop()
 	mensagem = Mensagem.query.all()
 	form = RegisterMensagem()
-	
-	test='fbdn'
 
 	if form.validate_on_submit():
 	    send_message(form.conteudo.data)
@@ -93,11 +91,8 @@ def index():
 		#new_user = User(username=form.username.data, email=form.username.data, password=form.password.data)
 		#db.session.add(new_Comentario)
 		#db.session.commit()
-		
+
 	return render_template('index.html', form=form, mensagem=mensagem)    
-
-
-
 
 
 if __name__ == '__main__':
